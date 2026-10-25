@@ -1,0 +1,14 @@
+<video src="/f/{{id}}.{{ext}}" controls autoplay loop preload="metadata"></video>
+<table class="bar">
+  <tr>
+    <td class="l"><a href="/v/{{prev}}">&laquo; thruk</a></td>
+    <td class="c">
+      <form action="/random" method="get">
+        <input type="hidden" name="not" value="{{id}}">
+        <button class="btn" type="submit">[ ksh'vaar ]</button>
+      </form>
+    </td>
+    <td class="r"><a href="/v/{{next}}">zhaal &raquo;</a></td>
+  </tr>
+</table>
+<div class="meta">ssa: <span class="mono">{{name}}</span> &middot; {{size}} &middot; {{pos}} ith {{total}}</div>
