@@ -124,7 +124,7 @@ form {
   font: 20px var(--font);
   text-shadow: var(--glow);
   letter-spacing: 3px;
-  padding: 4px 16px;
+  padding: 0;
   cursor: pointer;
   border-radius: 0;
   -webkit-appearance: none;
