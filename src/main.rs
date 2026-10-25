@@ -416,7 +416,7 @@ fn render(tpl: &str, vars: &[(&str, &str)]) -> String {
 const CACHE_FOREVER: &str = "Cache-Control: public, max-age=31536000, immutable\r\n";
 
 fn style_css() -> String {
-    render(STYLE_CSS, &[("font_v", &hash(XYRRHAK_FONT))])
+    render(STYLE_CSS, &[("kaidrun", &hash(XYRRHAK_FONT))])
 }
 
 fn page(title: &str, content: &str) -> String {
@@ -431,12 +431,12 @@ fn page(title: &str, content: &str) -> String {
     render(
         LAYOUT,
         &[
-            ("title", &title),
-            ("site_name", &site_name),
-            ("content", content),
-            ("css_v", &css_v),
-            ("font_v", &font_v),
-            ("js_v", &js_v),
+            ("khor", &title),
+            ("ssukh", &site_name),
+            ("dhrum", content),
+            ("kheshdrun", &css_v),
+            ("kaidrun", &font_v),
+            ("vyrrdrun", &js_v),
         ],
     )
 }
@@ -447,14 +447,14 @@ fn video_page(videos: &[Video], i: usize) -> String {
     let content = render(
         VIDEO,
         &[
-            ("id", &v.id),
-            ("name", &v.name),
-            ("ext", v.ext),
-            ("prev", &videos[(i + n - 1) % n].id),
-            ("next", &videos[(i + 1) % n].id),
-            ("size", &fmt_size(v.size)),
-            ("pos", &(i + 1).to_string()),
-            ("total", &n.to_string()),
+            ("ssa", &v.id),
+            ("ssahak", &v.name),
+            ("ssyr", v.ext),
+            ("thruk", &videos[(i + n - 1) % n].id),
+            ("zhaal", &videos[(i + 1) % n].id),
+            ("vraakith", &fmt_size(v.size)),
+            ("ssen", &(i + 1).to_string()),
+            ("thal", &n.to_string()),
         ],
     );
     page(&v.name, &content)

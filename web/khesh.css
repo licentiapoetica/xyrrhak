@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Xyrrhak";
-  src: url("/xyrrhak.woff?v={{font_v}}") format("woff");
+  src: url("/xyrrhak.woff?v={{kaidrun}}") format("woff");
   font-display: block;
 }
 
