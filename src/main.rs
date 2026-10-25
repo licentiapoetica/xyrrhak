@@ -269,12 +269,12 @@ fn handle(stream: TcpStream, videos: &[Video]) -> io::Result<()> {
     let (path, query) = target.split_once('?').unwrap_or((&target, ""));
 
     match path {
-        "/style.css" => send(&mut out, "200 OK", "text/css; charset=utf-8", style_css().as_bytes(), head, CACHE_FOREVER)?,
+        "/khesh.css" => send(&mut out, "200 OK", "text/css; charset=utf-8", style_css().as_bytes(), head, CACHE_FOREVER)?,
         "/xyrrhak.woff" => send(&mut out, "200 OK", "font/woff", XYRRHAK_FONT, head, CACHE_FOREVER)?,
         "/vyrr.js" => send(&mut out, "200 OK", "text/javascript; charset=utf-8", SCRIPT.as_bytes(), head, CACHE_FOREVER)?,
         "/vhess" => send_html(&mut out, "200 OK", &page("vhess", ABOUT), head)?,
 
-        "/" | "/random" => {
+        "/" | "/kshvaar" => {
             let not = query.split('&').find_map(|kv| kv.strip_prefix("not="));
             let mut pool: Vec<&Video> = videos.iter().filter(|v| Some(v.id.as_str()) != not).collect();
             if pool.is_empty() {
@@ -383,7 +383,7 @@ fn serve_file(out: &mut impl Write, v: &Video, range: Option<&str>, head: bool) 
     Ok(())
 }
 
-const STYLE_CSS: &str = include_str!("../web/style.css");
+const STYLE_CSS: &str = include_str!("../web/khesh.css");
 const XYRRHAK_FONT: &[u8] = include_bytes!("../web/xyrrhak.woff");
 const SCRIPT: &str = include_str!("../web/vyrr.js");
 const LAYOUT: &str = include_str!("../web/khaarn.html");

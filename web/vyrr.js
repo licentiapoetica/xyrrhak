@@ -26,9 +26,9 @@
 
     if (e.key === "r" || e.key === "R") {
       e.preventDefault();
-      const form = document.querySelector('form[action="/random"]');
+      const form = document.querySelector('form[action="/kshvaar"]');
       if (form) form.submit();
-      else location.href = "/random";
+      else location.href = "/kshvaar";
     } else if (e.key === "ArrowRight") {
       e.preventDefault();
       follow("next");

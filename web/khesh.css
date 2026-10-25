@@ -41,25 +41,25 @@ a:hover {
   text-shadow: none;
 }
 
-.frame {
+.khaarn {
   width: 100%;
   max-width: 860px;
   border-collapse: collapse;
   margin: 0 auto;
 }
 
-.top {
+.xae {
   padding: 6px 8px;
   height: 24px;
 }
 
-.logo {
+.ssa {
   font: 24px var(--font);
   letter-spacing: 3px;
   text-decoration: none;
 }
 
-.content {
+.dhrum {
   padding: 10px 8px;
 }
 
@@ -74,36 +74,36 @@ video {
   outline: none;
 }
 
-.bar {
+.thol {
   width: 100%;
   margin-top: 8px;
   border-collapse: collapse;
 }
 
-.bar td {
+.thol td {
   width: 33%;
   padding: 2px 0;
 }
 
-.l {
+.vhaesh {
   text-align: left;
 }
 
-.c {
+.zhaak {
   text-align: center;
 }
 
-.r {
+.zul {
   text-align: right;
 }
 
-.meta {
+.thyr {
   margin-top: 8px;
   color: #999;
   text-align: center;
 }
 
-.mono {
+.kaighaz {
   font-family: "Xyrrhak", "Courier New", Courier, monospace;
 }
 
@@ -111,13 +111,13 @@ form {
   margin: 0;
 }
 
-.about {
+.skaehak {
   max-width: 560px;
   margin: 40px auto;
   line-height: 1.8;
 }
 
-.btn {
+.thokghaz {
   background: #000;
   color: #fff;
   border: 0;
@@ -131,7 +131,7 @@ form {
   appearance: none;
 }
 
-.btn:hover {
+.thokghaz:hover {
   background: #fff;
   color: #000;
   text-shadow: none;
