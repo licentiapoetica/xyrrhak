@@ -46,6 +46,7 @@ struct Video {
     path: PathBuf,
     size: u64,
     ext: &'static str,
+    uploaded: Option<SystemTime>,
 }
 
 type Index = Arc<RwLock<Arc<Vec<Video>>>>;
@@ -55,13 +56,14 @@ struct Found {
     path: PathBuf,
     size: u64,
     modified: Option<SystemTime>,
+    uploaded: Option<SystemTime>,
     ext: &'static str,
 }
 
 struct Watcher {
     dir: PathBuf,
     last: HashMap<String, (u64, Option<SystemTime>)>,
-    sig: Vec<(String, u64, Option<SystemTime>)>,
+    sig: Vec<(String, u64, Option<SystemTime>, Option<SystemTime>)>,
 }
 
 impl Watcher {
@@ -83,7 +85,7 @@ impl Watcher {
         }
         self.last = seen;
         ready.sort_by(|a, b| a.file_name.cmp(&b.file_name));
-        let sig: Vec<_> = ready.iter().map(|f| (f.file_name.clone(), f.size, f.modified)).collect();
+        let sig: Vec<_> = ready.iter().map(|f| (f.file_name.clone(), f.size, f.modified, f.uploaded)).collect();
         if !trust && sig == self.sig {
             return None;
         }
@@ -196,7 +198,9 @@ fn list_dir(dir: &Path) -> Vec<Found> {
             continue;
         }
         let file_name = entry.file_name().to_string_lossy().into_owned();
-        list.push(Found { file_name, path: real, size: meta.len(), modified: meta.modified().ok(), ext });
+        let modified = meta.modified().ok();
+        let uploaded = meta.created().ok().or(modified);
+        list.push(Found { file_name, path: real, size: meta.len(), modified, uploaded, ext });
     }
     list
 }
@@ -213,9 +217,9 @@ fn build(found: Vec<Found>) -> Vec<Video> {
             }
             salt += 1;
         };
-        list.push(Video { id, name, path: f.path, size: f.size, ext: f.ext });
+        list.push(Video { id, name, path: f.path, size: f.size, ext: f.ext, uploaded: f.uploaded });
     }
-    list.sort_by(|a, b| a.id.cmp(&b.id));
+    list.sort_by(|a, b| a.uploaded.cmp(&b.uploaded).then_with(|| a.id.cmp(&b.id)));
     list
 }
 
