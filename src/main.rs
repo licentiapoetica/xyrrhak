@@ -267,6 +267,7 @@ fn handle(stream: TcpStream, videos: &[Video]) -> io::Result<()> {
     match path {
         "/style.css" => send(&mut out, "200 OK", "text/css; charset=utf-8", style_css().as_bytes(), head, CACHE_FOREVER)?,
         "/xyrrhak.woff" => send(&mut out, "200 OK", "font/woff", XYRRHAK_FONT, head, CACHE_FOREVER)?,
+        "/vyrr.js" => send(&mut out, "200 OK", "text/javascript; charset=utf-8", SCRIPT.as_bytes(), head, CACHE_FOREVER)?,
         "/vhess" => send_html(&mut out, "200 OK", &page("vhess", ABOUT), head)?,
 
         "/" | "/random" => {
@@ -380,6 +381,7 @@ fn serve_file(out: &mut impl Write, v: &Video, range: Option<&str>, head: bool) 
 
 const STYLE_CSS: &str = include_str!("../web/style.css");
 const XYRRHAK_FONT: &[u8] = include_bytes!("../web/xyrrhak.woff");
+const SCRIPT: &str = include_str!("../web/vyrr.js");
 const LAYOUT: &str = include_str!("../web/khaarn.html");
 const VIDEO: &str = include_str!("../web/hrrghaz.html");
 const EMPTY: &str = include_str!("../web/skrath.html");
@@ -421,9 +423,17 @@ fn page(title: &str, content: &str) -> String {
     };
     let css_v = hash(style_css().as_bytes());
     let font_v = hash(XYRRHAK_FONT);
+    let js_v = hash(SCRIPT.as_bytes());
     render(
         LAYOUT,
-        &[("title", &title), ("site_name", &site_name), ("content", content), ("css_v", &css_v), ("font_v", &font_v)],
+        &[
+            ("title", &title),
+            ("site_name", &site_name),
+            ("content", content),
+            ("css_v", &css_v),
+            ("font_v", &font_v),
+            ("js_v", &js_v),
+        ],
     )
 }
 
