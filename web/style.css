@@ -120,7 +120,7 @@ form {
 .btn {
   background: #000;
   color: #fff;
-  border: 2px outset #ccc;
+  border: 0;
   font: 20px var(--font);
   text-shadow: var(--glow);
   letter-spacing: 3px;
@@ -135,8 +135,4 @@ form {
   background: #fff;
   color: #000;
   text-shadow: none;
-}
-
-.btn:active {
-  border-style: inset;
 }
