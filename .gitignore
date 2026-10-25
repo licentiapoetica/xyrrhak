@@ -3,3 +3,6 @@
 /tools
 /web/glossary.txt
 /web/specimen.html
+/web/dictionary.txt
+/deploy.sh
+/DEPLOY.md
